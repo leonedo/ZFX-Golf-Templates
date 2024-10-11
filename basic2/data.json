@@ -8,20 +8,7 @@
   "nm": "Basic 2",
   "ddd": 0,
   "assets": [
-    {
-      "id": "audio_0",
-      "u": "images/",
-      "p": "aud_0.mp3",
-      "e": 0,
-      "t": 2
-    },
-    {
-      "id": "audio_1",
-      "u": "images/",
-      "p": "aud_1.mp3",
-      "e": 0,
-      "t": 2
-    }
+  
   ],
   "fonts": {
     "list": [
