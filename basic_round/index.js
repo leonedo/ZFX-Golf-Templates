@@ -192,6 +192,12 @@ const animPromise = makeAnimPromise()
 webcg.on('data', function (data) {
     let updateTiming = 0
     console.log('data from casparcg received')
+    
+    if(data && data.hasOwnProperty('c0')){
+        console.log(`c0: ${data['c0']}`)
+        checkandcolor("c0",data['c0'])
+    }
+    
     animPromise.then(resolve => {
             if (anim.currentFrame !== 0 && updateAnimation) {
                 updateTiming = framesMilliseconds * (updateDelay + loopTiming)
@@ -290,6 +296,34 @@ anim.addEventListener('complete', () => {
 })
 
 
+function update_color(campo,color){
+    try {
+     var fill_color = `.${campo}`
+     document.querySelector(fill_color).style.setProperty("fill", color);
+    } catch (error) {
+     console.log(error)
+    }
+     
+ }
+ 
+ function checkandcolor(item, color){
+     if (itemExists(item)){
+         console.log(`checkandcolor: ${item} -- exist`)
+         update_color(item,color);
+     } else {
+         console.log(`checkandcolor: ${item} --- waiting`)
+         setTimeout(function(){
+             checkandcolor(item, color);
+         }, 100);
+     }
+ }
+ 
+ function itemExists(item) {
+     var fill = `.${item}`
+    //return document.querySelector(item).style !== false;
+    return document.querySelector(fill) !== null;
+ }
+ 
 
 //casparcg control
 webcg.on('play', function () {
